@@ -17,3 +17,11 @@ class AbstractPhone(models.Model):
     class Meta:
         abstract = True
 
+
+class User(AbstractUser, AbstractPhone):
+    """User model
+
+    Contain abstract model of Django user and abstract model of phone number.
+    """
+    def __str__(self):
+        return self.username

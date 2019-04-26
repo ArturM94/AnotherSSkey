@@ -106,6 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Authentication
+
+AUTH_USER_MODEL = 'keystorage.User'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

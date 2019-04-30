@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -16,6 +16,23 @@ class AbstractPhone(models.Model):
 
     class Meta:
         abstract = True
+
+
+class CustomUserManager(UserManager):
+    """Custom user manager
+
+    User manager for custom user model
+    """
+
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        super().create_user(username, email, password, **extra_fields)
+        extra_fields.setdefault('phone_number', None)
+        return self._create_user(username, email, password, **extra_fields)
+
+    def create_superuser(self, username, email, password, **extra_fields):
+        super().create_superuser(username, email, password, **extra_fields)
+        extra_fields.setdefault('phone_number', None)
+        return self._create_user(username, email, password, **extra_fields)
 
 
 class User(AbstractUser, AbstractPhone):

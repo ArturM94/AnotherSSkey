@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class AbstractPhone(models.Model):
@@ -40,5 +41,9 @@ class User(AbstractUser, AbstractPhone):
 
     Custom user model that contain abstract model of Django user and abstract model of phone number.
     """
+    email = models.EmailField(_('email address'), unique=True, blank=False)
+
+    objects = CustomUserManager()
+
     def __str__(self):
         return self.username

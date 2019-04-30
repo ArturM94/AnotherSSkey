@@ -38,7 +38,7 @@ class CustomUserManager(UserManager):
 class User(AbstractUser, AbstractPhone):
     """User model
 
-    Contain abstract model of Django user and abstract model of phone number.
+    Custom user model that contain abstract model of Django user and abstract model of phone number.
     """
     def __str__(self):
         return self.username
